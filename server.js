@@ -111,11 +111,12 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Any other route -> serve index.html (SPA support)
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api')) {
-    return next(); // Pass API 404s to the error handler
+// Check for non-API GET requests to serve React app
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api')) {
+    return res.sendFile(path.join(__dirname, 'public', 'index.html'));
   }
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  next();
 });
 
 // 404 handler for API routes
