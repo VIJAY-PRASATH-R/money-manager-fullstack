@@ -85,15 +85,8 @@ mongoose.connection.on('error', (err) => {
 const transactionRoutes = require('./routes/transactions');
 app.use('/api/transactions', transactionRoutes);
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Money Manager API is running',
-    version: '1.0.0',
-    status: 'healthy',
-    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
-    databaseType: useInMemory ? 'In-Memory (Testing)' : (MONGO_URI.includes('mongodb+srv') ? 'MongoDB Atlas (Cloud)' : 'Local MongoDB')
-  });
-});
+// Root route removed to allow serving React frontend
+// API status is available at /health
 
 // Health check endpoint
 app.get('/health', (req, res) => {
