@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Test</title>
+    <style>
+        html.light {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        html.dark {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 2px solid currentColor;
+            background: transparent;
+            color: inherit;
+            border-radius: 8px;
+        }
+
+        .status {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid currentColor;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧪 Dark Mode Test Page</h1>
+
+    <button onclick="toggleTheme()">Toggle Dark Mode</button>
+
+    <div class="status">
+        <h2>Current Status:</h2>
+        <p id="theme-status"></p>
+        <p id="class-status"></p>
+    </div>
+
+    <div class="status">
+        <h2>Instructions:</h2>
+        <ol>
+            <li>Click the "Toggle Dark Mode" button</li>
+            <li>The entire page should change color</li>
+            <li>Background should switch between white and dark blue</li>
+            <li>Text should switch between black and white</li>
+        </ol>
+    </div>
+
+    <script>
+        // Initialize theme
+        let currentTheme = localStorage.getItem('test-theme') || 'light';
+        document.documentElement.className = currentTheme;
+        updateStatus();
+
+        function toggleTheme() {
+            console.log('🔄 Toggle clicked! Current:', currentTheme);
+
+            // Switch theme
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            console.log('➡️ Switching to:', currentTheme);
+
+            // Apply to HTML element
+            document.documentElement.className = currentTheme;
+            console.log('✅ Applied class:', document.documentElement.className);
+
+            // Save to localStorage
+            localStorage.setItem('test-theme', currentTheme);
+
+            // Update status display
+            updateStatus();
+        }
+
+        function updateStatus() {
+            document.getElementById('theme-status').textContent = 'Theme: ' + currentTheme;
+            document.getElementById('class-status').textContent = 'HTML class: ' + document.documentElement.className;
+        }
+    </script>
+</body>
+
+</html>

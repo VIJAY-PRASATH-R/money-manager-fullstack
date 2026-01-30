@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" class="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/money-icon.png" />
+
+  <!-- Responsive Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Money Manager - Track your income and expenses with ease. Manage your finances efficiently." />
+  <meta name="keywords" content="money manager, expense tracker, income tracker, budget planner, finance management" />
+  <meta name="author" content="Money Manager" />
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#4F46E5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1F2937" media="(prefers-color-scheme: dark)" />
+
+  <title>Money Manager</title>
+
+  <style>
+    /* HIDE ALL VITE OVERLAYS AND BADGES */
+    #vite-plugin-checker-notification-root,
+    vite-error-overlay,
+    [id*="vite"],
+    [class*="vite"],
+    [data-vite-dev-id] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* Inline critical CSS for dark mode */
+    html.dark {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+
+    html.light {
+      background-color: #fafafa;
+      color: #1e293b;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+  </style>
+
+  <!-- Force title to stay as Money Manager -->
+  <script>
+    // Set title immediately
+    document.title = 'Money Manager';
+
+    // Keep checking and fixing title if Vite tries to change it
+    setInterval(() => {
+      if (document.title !== 'Money Manager') {
+        document.title = 'Money Manager';
+      }
+    }, 100);
+  </script>
+  <script type="module" crossorigin src="/assets/index-Co-6ylFe.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-xR2eyHeJ.css">
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Additional script to remove Vite overlays and fix title -->
+  <script>
+    // Remove any Vite error overlays that appear
+    setInterval(() => {
+      // Remove overlays
+      const overlays = document.querySelectorAll('vite-error-overlay, [id*="vite"], [class*="vite"]');
+      overlays.forEach(el => el.remove());
+
+      // Force title
+      if (document.title.includes('Vite') || document.title.includes('vite')) {
+        document.title = 'Money Manager';
+      }
+    }, 100);
+
+    // Also watch for title changes
+    const observer = new MutationObserver(() => {
+      if (document.title !== 'Money Manager') {
+        document.title = 'Money Manager';
+      }
+    });
+
+    observer.observe(document.querySelector('title'), {
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
+  </script>
+</body>
+
+</html>
